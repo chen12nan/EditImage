@@ -64,6 +64,14 @@ void SyberGraphDoc::remove(int index, bool autoDelete)
     }
 }
 
+void SyberGraphDoc::removeOne(SyberGraphItem *item)
+{
+    if(m_childItems.removeOne(item))
+    {
+        delete item;
+    }
+}
+
 void SyberGraphDoc::move(int from, int to)
 {
      m_childItems.move(from, to);

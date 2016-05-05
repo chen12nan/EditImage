@@ -11,6 +11,10 @@ SyberImage::SyberImage():
     m_focusLine(QLine()),
     m_focusRect(QRect())
 {
+    int w = this->width();
+    int h = this->height();
+    m_pixmap = QPixmap(w, h);
+    m_pixmap.fill(Qt::red);
     m_tools[opLineTool] = new SyberLineTool();
     m_tools[opEditTool] = new SyberEditTool();
     m_tools[opRectTool] = new SyberRectTool();
@@ -61,6 +65,27 @@ void SyberImage::mouseDoubleClick(const QPoint& pos)
     m_tools[m_eTool]->mouseDoubleClick(this, pos);
 }
 
+void SyberImage::deleteItem()
+{
+    if(m_pDoc->m_selectItems.count())
+    {
+        foreach(SyberGraphItem* item, m_pDoc->m_selectItems)
+        {
+            m_pDoc->removeOne(item);
+        }
+        m_pDoc->m_selectItems.clear();
+        m_pDoc->m_pCurItem = NULL;
+        update();
+    }
+}
+
+void SyberImage::setImagePath(const QString &path)
+{
+    qDebug()<<Q_FUNC_INFO<<path;
+    m_pixmap = QPixmap(path);
+    update();
+}
+
 void SyberImage::setDoc(SyberGraphDoc *doc)
 {
     if(m_pDoc == doc)
@@ -88,9 +113,9 @@ int SyberImage::opacity() const
     return m_curOpacity;
 }
 
-void SyberImage::setOperatorTool(OperatorTool tool)
+void SyberImage::setOperatorTool(int operatorType)
 {
-    m_eTool = tool;
+    m_eTool = (OperatorTool)operatorType;
     if(m_eTool != opEditTool)
     {
         m_pDoc->m_selectItems.clear();
@@ -115,7 +140,13 @@ void SyberImage::drawBackground(QPainter *painter)
 
 void SyberImage::drawForeground(QPainter *painter)
 {
-
+    painter->save();
+    QPen pen(Qt::red);
+    pen.setWidth(3);
+    pen.setStyle(Qt::SolidLine);
+    painter->setPen(pen);
+    painter->drawRect(m_focusRect);
+    painter->restore();
 }
 
 void SyberImage::sendHitItem(SyberGraphItem *item)
@@ -126,14 +157,14 @@ void SyberImage::sendHitItem(SyberGraphItem *item)
 void SyberImage::paint(QPainter *painter)
 {
     painter->save();
-
+    painter->drawPixmap(0,0, m_pixmap);
     drawBackground(painter);
     if(m_pDoc)
     {
         m_pDoc->paint(painter);
         m_pDoc->paintActiveState(painter);
     }
-    if(m_pDoc->m_selectItems.count() == 0 && m_eTool == opEditTool)
+    if(m_pDoc->m_selectItems.count() == 0 && (m_eTool == opEditTool || m_eTool == opStringTool))
         drawForeground(painter);
 
     painter->restore();

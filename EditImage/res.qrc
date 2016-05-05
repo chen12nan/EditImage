@@ -1,6 +1,15 @@
 <RCC>
     <qresource prefix="/">
         <file>qml/main.qml</file>
+		<file>qml/ChoseImage.qml</file>
+		<file>qml/PropertyValue.qml</file>
+		<file>qml/img/delete.png</file>
+		<file>qml/img/DrawLine.png</file>
+		<file>qml/img/DrawRectangle.png</file>
+		<file>qml/img/DrawRoundRect.png</file>
+		<file>qml/img/DrawString.png</file>
+		<file>qml/img/EditMove.png</file>
+		<file>qml/img/DrawImage.png</file>
     </qresource>
 </RCC>
 

@@ -18,7 +18,8 @@ public:
     void append(SyberGraphItem *item);
     void insert(int index, SyberGraphItem *item);
     void replace(int index, SyberGraphItem *item);
-    void remove(int index, bool autoDelete = false);
+    void remove(int index, bool autoDelete = true);
+    void removeOne(SyberGraphItem* item);
     void move(int from, int to);
     void swap(int index1, int index2);
     int indexOf(SyberGraphItem *item);

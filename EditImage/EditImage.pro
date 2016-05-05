@@ -73,3 +73,7 @@ QML_FILES = qml/*.qml
 OTHER_FILES += $$QML_FILES *.qm
                
 
+DISTFILES += \
+    qml/PropertyValue.qml \
+    qml/ChoseImage.qml
+

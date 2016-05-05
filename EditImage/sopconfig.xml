@@ -1,18 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?>
-<sopconfig xmlns:syberos="http://schemas.syberos.com/sop/res/syberos/v1"
-    syberos:sopid="com.mycompany.EditImage"
-    syberos:versionCode="1"
-    syberos:versionName="1.0.0">
-    <uses-permission />
-    <uses-sdk />
-    <application syberos:debuggable="true"
-        syberos:description="Brief introduction of your application here. "
-        syberos:icon="res/EditImage.png"
-        syberos:name="EditImage">
-        <uiapp syberos:id="EditImage"
-            syberos:exec="bin/EditImage"
-            syberos:icon="res/EditImage.png"
-            syberos:launcher="true">
+<?xml version="1.0" encoding="UTF-8"?>
+<sopconfig syberos:versionCode="1" xmlns:syberos="http://schemas.syberos.com/sop/res/syberos/v1" syberos:sopid="com.mycompany.EditImage" syberos:shareUserId="" syberos:versionName="1.0.0">
+    <uses-permission syberos:name="syberos.permission.ACCESS_CAMERA"/>
+    <uses-permission syberos:name="syberos.permission.ACCESS_DATA_NETWORK"/>
+    <uses-permission syberos:name="syberos.permission.ACCESS_STORAGE"/>
+    <uses-sdk syberos:targetSdkVersion="" syberos:minSdkVersion=""/>
+    <application syberos:description="Brief introduction of your application here. " syberos:name="EditImage" syberos:debuggable="true" syberos:icon="res/EditImage.png">
+        <uiapp syberos:splash="" syberos:launcher="true" syberos:id="EditImage" syberos:exec="bin/EditImage" syberos:name="" syberos:background="" syberos:icon="res/EditImage.png">
+            <doctype syberos:id=""/>
         </uiapp>
     </application>
 </sopconfig>

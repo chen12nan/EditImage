@@ -81,6 +81,27 @@ void SyberEditTool::mousePress(SyberImage *view, const QPoint& pos)
     }
     else
         doc->m_selectItems.clear();
+    if(doc->m_pCurItem)
+    {
+        for(int  i = 0; i<= doc->m_pCurItem->getHandlerCount(); i++)
+        {
+            QRect rect = doc->m_pCurItem->getPointRect();
+            rect.moveCenter(doc->m_pCurItem->getHandle(i));
+            if(rect.contains(pos))
+            {
+                QCursor cursor = doc->m_pCurItem->getHandleCursor(i);
+                view->setCursor(cursor);
+                m_nDragHandle = i;
+                view->update();
+                return ;
+            }
+            else
+            {
+                view->setCursor(Qt::ArrowCursor);
+                m_nDragHandle = -1;
+            }
+        }
+    }
 }
 
 void SyberEditTool::mouseMove(SyberImage *view, const QPoint& pos)
@@ -91,27 +112,6 @@ void SyberEditTool::mouseMove(SyberImage *view, const QPoint& pos)
         if(m_bPress)
         {
                 doc->m_pCurItem->moveHandleTo(view->m_endPoint, m_nDragHandle);
-        }
-        else
-        {
-            for(int  i = 0; i<= doc->m_pCurItem->getHandlerCount(); i++)
-            {
-                QRect rect = doc->m_pCurItem->getPointRect();
-                rect.moveCenter(doc->m_pCurItem->getHandle(i));
-                if(rect.contains(pos))
-                {
-                    QCursor cursor = doc->m_pCurItem->getHandleCursor(i);
-                    view->setCursor(cursor);
-                    m_nDragHandle = i;
-                    view->update();
-                    return ;
-                }
-                else
-                {
-                    view->setCursor(Qt::ArrowCursor);
-                    m_nDragHandle = -1;
-                }
-            }
         }
     }
     view->update();

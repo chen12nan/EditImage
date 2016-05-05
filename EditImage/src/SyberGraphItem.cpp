@@ -73,7 +73,7 @@ QPainterPath SyberGraphItem::shape()
 
 QRect SyberGraphItem::getPointRect()
 {
-    return QRect(0, 0, 30, 30);
+    return QRect(0, 0, 70, 70);
 }
 
 void SyberGraphItem::paint(QPainter *painter)

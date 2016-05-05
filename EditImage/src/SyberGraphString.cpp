@@ -8,7 +8,6 @@ SyberGraphString::SyberGraphString(QObject *parent):
 void SyberGraphString::setText(const QString &text)
 {
     m_text = text;
-    m_textEdit->setText(text);
 }
 
 QString SyberGraphString::text() const
