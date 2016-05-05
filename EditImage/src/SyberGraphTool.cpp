@@ -173,6 +173,35 @@ void SyberRectTool::mouseDoubleClick(SyberImage *view, const QPoint& pos)
 
 }
 
+SyberStringTool::SyberStringTool()
+{
+
+}
+
+void SyberStringTool::mousePress(SyberImage *view, const QPoint& pos)
+{
+}
+
+void SyberStringTool::mouseMove(SyberImage *view, const QPoint& pos)
+{
+
+}
+
+void SyberStringTool::mouseRelease(SyberImage *view, const QPoint& pos)
+{
+    SyberGraphDoc *doc = view->getDoc();
+    SyberGraphString *item = new SyberGraphString();
+    item->setRect(view->m_beginPoint, view->m_endPoint);
+    doc->m_pCurItem = item;
+    doc->append(doc->m_pCurItem);
+    view->update();
+    view->sendNewText();
+}
+
+void SyberStringTool::mouseDoubleClick(SyberImage *view, const QPoint& pos)
+{
+
+}
 
 SyberRoundTool::SyberRoundTool()
 {
@@ -255,27 +284,3 @@ void SyberImageTool::mouseDoubleClick(SyberImage *view, const QPoint& pos)
 }
 
 
-SyberStringTool::SyberStringTool()
-{
-
-}
-
-void SyberStringTool::mousePress(SyberImage *view, const QPoint& pos)
-{
-
-}
-
-void SyberStringTool::mouseMove(SyberImage *view, const QPoint& pos)
-{
-
-}
-
-void SyberStringTool::mouseRelease(SyberImage *view, const QPoint& pos)
-{
-
-}
-
-void SyberStringTool::mouseDoubleClick(SyberImage *view, const QPoint& pos)
-{
-
-}

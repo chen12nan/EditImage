@@ -6,7 +6,9 @@
 
 SyberGraphItem::SyberGraphItem(QObject *parent):
     QObject(parent),
-    m_color(Qt::transparent)
+    m_color(Qt::red),
+    m_lineWidth(5),
+    m_opacity(1)
 {
 }
 
@@ -18,6 +20,7 @@ ItemType SyberGraphItem::type()
 void SyberGraphItem::setLineWidth(int value)
 {
     m_lineWidth = value;
+    m_pen.setWidth(value);
 }
 
 int SyberGraphItem::lineWidth() const

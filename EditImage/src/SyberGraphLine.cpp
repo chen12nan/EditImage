@@ -30,10 +30,8 @@ QLine SyberGraphLine::line() const
 void SyberGraphLine::paint(QPainter *painter)
 {
     painter->save();
-    m_pen.setWidth(lineWidth());
     painter->setOpacity(opacity());
     painter->setPen(m_pen);
-    painter->setBrush(m_color);
     painter->setRenderHint(QPainter::Antialiasing);
     painter->drawLine(m_line);
     painter->restore();

@@ -154,6 +154,11 @@ void SyberImage::sendHitItem(SyberGraphItem *item)
 
 }
 
+void SyberImage::sendNewText()
+{
+    emit newText(m_focusRect);
+}
+
 void SyberImage::paint(QPainter *painter)
 {
     painter->save();
@@ -173,6 +178,11 @@ void SyberImage::paint(QPainter *painter)
 void SyberImage::setColor(const QColor &color)
 {
     m_color = color;
+    if(m_pDoc->m_pCurItem)
+    {
+        m_pDoc->m_pCurItem->setColor(color);
+    }
+    update();
 }
 
 void SyberImage::setLineWidth(int value)
@@ -187,5 +197,10 @@ void SyberImage::setLineWidth(int value)
 
 void SyberImage::setOpacity(int value)
 {
+    if(m_pDoc->m_pCurItem)
+    {
+        m_pDoc->m_pCurItem->setOpacity(value);
+    }
+    update();
 
 }

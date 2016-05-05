@@ -7,9 +7,28 @@ CPageStackWindow {
         id: root
         width:parent.width
         height:parent.height
+        TextEdit {
+            id: edit
+            width: flick.width
+            height: flick.height
+            focus: true
+            wrapMode: TextEdit.Wrap
+            visible: false
+
+            onFocusChanged: {
+                edit.visible = focus;
+            }
+        }
         SyberImage{
             id: contentImage
             anchors.fill: parent
+            onNewText:{
+                edit.x = 0;
+                edit.y = 0;
+                edit.width = 100;
+                edit.height = 100;
+                edit.visible = true;
+            }
 
             MouseArea{
                 anchors.fill: parent

@@ -34,12 +34,13 @@ public:
 
 
     void sendHitItem(SyberGraphItem* item);
-
+    void sendNewText();
 protected:
     void paint(QPainter *painter);
 
 signals:
     void hitItem(SyberGraphItem* item);
+    void newText(const QRect &rect);
 
 public slots:
     void setOperatorTool(int operatorType);

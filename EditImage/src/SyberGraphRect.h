@@ -15,6 +15,7 @@ public:
     QRect rect() const;
 
     void setRoundFlag(bool flag) { m_bRound = flag;}
+    void setBrushFlag(bool flag) { m_bBrush = flag;}
     // paint
     virtual void paint(QPainter* painter);
     virtual void paintActiveState(QPainter* painter);
@@ -28,6 +29,7 @@ public:
 
 private:
     bool m_bRound;
+    bool m_bBrush;
 };
 
 class SyberGraphRound : public SyberGraphRect

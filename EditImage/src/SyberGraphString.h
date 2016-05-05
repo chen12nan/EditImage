@@ -13,6 +13,10 @@ public:
     void setText(const QString& text);
     QString text() const;
 
+    // paint
+    virtual void paint(QPainter* painter);
+    virtual void paintActiveState(QPainter* painter);
+
 private:
     QString m_text;
 };

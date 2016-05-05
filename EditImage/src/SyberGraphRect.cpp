@@ -2,7 +2,8 @@
 
 SyberGraphRect::SyberGraphRect(QObject *parent):
     SyberGraphItem(parent),
-    m_bRound(false)
+    m_bRound(false),
+    m_bBrush(false)
 {
 }
 
@@ -31,10 +32,10 @@ QPainterPath SyberGraphRect::shape()
 void SyberGraphRect::paint(QPainter *painter)
 {
     painter->save();
-    m_pen.setWidth(lineWidth());
     painter->setOpacity(opacity());
     painter->setPen(m_pen);
-    painter->setBrush(m_color);
+    if(m_bBrush)
+        painter->setBrush(m_color);
     painter->setRenderHint(QPainter::Antialiasing);
     if(m_bRound)
         painter->drawRoundedRect(m_box,20,20);
