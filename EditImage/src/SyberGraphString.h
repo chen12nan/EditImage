@@ -9,7 +9,7 @@ class SyberGraphString : public SyberGraphRect
 
 public:
     SyberGraphString(QObject*parent = 0);
-
+    ItemType type();
     void setText(const QString& text);
     QString text() const;
 

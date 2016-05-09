@@ -189,13 +189,19 @@ void SyberStringTool::mouseMove(SyberImage *view, const QPoint& pos)
 
 void SyberStringTool::mouseRelease(SyberImage *view, const QPoint& pos)
 {
-    SyberGraphDoc *doc = view->getDoc();
-    SyberGraphString *item = new SyberGraphString();
-    item->setRect(view->m_beginPoint, view->m_endPoint);
-    doc->m_pCurItem = item;
-    doc->append(doc->m_pCurItem);
-    view->update();
-    view->sendNewText();
+    qDebug()<<Q_FUNC_INFO<<view->m_beginPoint<<view->m_endPoint;
+    QRect r(view->m_beginPoint, view->m_endPoint);
+    r = r.normalized();
+    if(r.width() > 30 && r.height() > 30)
+    {
+        SyberGraphDoc *doc = view->getDoc();
+        SyberGraphString *item = new SyberGraphString();
+        item->setRect(view->m_beginPoint, view->m_endPoint);
+        doc->m_pCurItem = item;
+        doc->append(doc->m_pCurItem);
+        view->update();
+        view->sendNewText();
+    }
 }
 
 void SyberStringTool::mouseDoubleClick(SyberImage *view, const QPoint& pos)
@@ -256,6 +262,7 @@ SyberImageTool::SyberImageTool()
 
 void SyberImageTool::mousePress(SyberImage *view, const QPoint& pos)
 {
+    return ;
     SyberGraphDoc *doc = view->getDoc();
     m_bPress = true;
     SyberGraphImage *item = new SyberGraphImage();

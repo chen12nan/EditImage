@@ -1,5 +1,6 @@
 #include "syberimage.h"
 #include <QPainter>
+#include "SyberGraphString.h"
 
 SyberImage::SyberImage():
     m_curLineWidth(1),
@@ -86,6 +87,17 @@ void SyberImage::setImagePath(const QString &path)
     update();
 }
 
+void SyberImage::setCurText(const QString &text)
+{
+    if(m_pDoc->m_pCurItem && m_pDoc->m_pCurItem->type() == epString)
+    {
+        SyberGraphString* string = (SyberGraphString*)m_pDoc->m_pCurItem;
+        string->setText(text);
+        update();
+    }
+
+}
+
 void SyberImage::setDoc(SyberGraphDoc *doc)
 {
     if(m_pDoc == doc)
@@ -156,7 +168,7 @@ void SyberImage::sendHitItem(SyberGraphItem *item)
 
 void SyberImage::sendNewText()
 {
-    emit newText(m_focusRect);
+    emit newText(QRect(m_beginPoint, m_endPoint));
 }
 
 void SyberImage::paint(QPainter *painter)

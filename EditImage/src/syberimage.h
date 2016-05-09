@@ -18,7 +18,7 @@ public:
 
     Q_INVOKABLE void deleteItem();
     Q_INVOKABLE void setImagePath(const QString& path);
-
+    Q_INVOKABLE void setCurText(const QString& text);
     void setDoc(SyberGraphDoc* doc);
     SyberGraphDoc* getDoc();
 

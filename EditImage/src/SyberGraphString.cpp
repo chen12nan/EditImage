@@ -5,6 +5,11 @@ SyberGraphString::SyberGraphString(QObject *parent):
 {
 }
 
+ItemType SyberGraphString::type()
+{
+    return epString;
+}
+
 void SyberGraphString::setText(const QString &text)
 {
     m_text = text;
